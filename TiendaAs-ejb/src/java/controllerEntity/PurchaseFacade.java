@@ -8,14 +8,14 @@ package controllerEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import model.DiscountCode;
+import model.Purchase;
 
 /**
  *
  * @author Osvaldo
  */
 @Stateless
-public class DiscountCodeFacade extends AbstractFacade<DiscountCode> implements DiscountCodeFacadeLocal {
+public class PurchaseFacade extends AbstractFacade<Purchase> implements PurchaseFacadeLocal {
 
     @PersistenceContext(unitName = "TiendaAs-ejbPU")
     private EntityManager em;
@@ -25,8 +25,7 @@ public class DiscountCodeFacade extends AbstractFacade<DiscountCode> implements 
         return em;
     }
 
-    public DiscountCodeFacade() {
-        super(DiscountCode.class);
+    public PurchaseFacade() {
+        super(Purchase.class);
     }
-    
 }

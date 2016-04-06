@@ -23,7 +23,6 @@ public class CommandIndex extends FrontCommand {
         } catch (NamingException ex) {
             Logger.getLogger(CommandIndex.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
 }

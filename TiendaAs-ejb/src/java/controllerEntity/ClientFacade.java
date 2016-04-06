@@ -8,14 +8,14 @@ package controllerEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import model.PurchaseOrder;
+import model.Client;
 
 /**
  *
  * @author Osvaldo
  */
 @Stateless
-public class PurchaseOrderFacade extends AbstractFacade<PurchaseOrder> implements PurchaseOrderFacadeLocal {
+public class ClientFacade extends AbstractFacade<Client> implements ClientFacadeLocal {
 
     @PersistenceContext(unitName = "TiendaAs-ejbPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class PurchaseOrderFacade extends AbstractFacade<PurchaseOrder> implement
         return em;
     }
 
-    public PurchaseOrderFacade() {
-        super(PurchaseOrder.class);
+    public ClientFacade() {
+        super(Client.class);
     }
     
 }

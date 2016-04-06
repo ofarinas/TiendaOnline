@@ -27,7 +27,7 @@
                 <thead>
                     <tr>
                         <th data-field="id">Name</th>
-                        <th data-field="name">code</th>
+                        <th data-field="name">Available</th>
                         <th data-field="price">Item Price</th>
                         <th data-field="delete"></th>
                     </tr>
@@ -39,16 +39,29 @@
                         if (list != null) {
                             for (Product producto : list) {
                     %>
+                    
                     <tr id="<%=producto.getProductId()%>">
                         <td><%=producto.getDescription()%></td>
                         <td><%=producto.getAvailable()%></td>
                         <td><%=producto.getPurchaseCost()%></td>
-                        <td><a class="waves-effect waves-light btn" onclick="deleteRowPrdoduct(<%=producto.getProductId()%>)">delete</a></td>
+                        <td><a class="waves-effect red darken-2 waves-light btn" onclick="deleteRowPrdoduct(<%=producto.getProductId()%>)">delete</a></td>
                     </tr>
                     <%
                             }
                         }
                     %>
+                      <tr >
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr >
+                        <td></td>
+                        <td><a class="waves-effect waves-light btn" onclick="">clean Trolley</a></td>
+                        <td><a class="waves-effect waves-light btn" href="/LayautPresentation/view/personalInfo.jsp">continue</a></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

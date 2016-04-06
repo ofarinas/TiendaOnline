@@ -38,7 +38,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Product.findByQuantityOnHand", query = "SELECT p FROM Product p WHERE p.quantityOnHand = :quantityOnHand"),
     @NamedQuery(name = "Product.findByMarkup", query = "SELECT p FROM Product p WHERE p.markup = :markup"),
     @NamedQuery(name = "Product.findByAvailable", query = "SELECT p FROM Product p WHERE p.available = :available"),
-    @NamedQuery(name = "Product.findByDescription", query = "SELECT p FROM Product p WHERE p.description = :description")})
+    @NamedQuery(name = "Product.findByDescription", query = "SELECT p FROM Product p WHERE p.description = :description"),
+    @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name")})
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,14 +61,17 @@ public class Product implements Serializable {
     @Size(max = 50)
     @Column(name = "DESCRIPTION")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Collection<PurchaseOrder> purchaseOrderCollection;
+    @Size(max = 22)
+    @Column(name = "NAME")
+    private String name;
     @JoinColumn(name = "MANUFACTURER_ID", referencedColumnName = "MANUFACTURER_ID")
     @ManyToOne(optional = false)
     private Manufacturer manufacturerId;
     @JoinColumn(name = "PRODUCT_CODE", referencedColumnName = "PROD_CODE")
     @ManyToOne(optional = false)
     private ProductCode productCode;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    private Collection<Purchase> purchaseCollection;
 
     public Product() {
     }
@@ -124,13 +128,12 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    @XmlTransient
-    public Collection<PurchaseOrder> getPurchaseOrderCollection() {
-        return purchaseOrderCollection;
+    public String getName() {
+        return name;
     }
 
-    public void setPurchaseOrderCollection(Collection<PurchaseOrder> purchaseOrderCollection) {
-        this.purchaseOrderCollection = purchaseOrderCollection;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Manufacturer getManufacturerId() {
@@ -147,6 +150,15 @@ public class Product implements Serializable {
 
     public void setProductCode(ProductCode productCode) {
         this.productCode = productCode;
+    }
+
+    @XmlTransient
+    public Collection<Purchase> getPurchaseCollection() {
+        return purchaseCollection;
+    }
+
+    public void setPurchaseCollection(Collection<Purchase> purchaseCollection) {
+        this.purchaseCollection = purchaseCollection;
     }
 
     @Override

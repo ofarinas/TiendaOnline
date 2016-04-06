@@ -19,7 +19,7 @@
     </head>
 
     <body>
-        <%@include file="nav.jsp" %>
+        <%@include file="/view/nav.jsp" %>
         <div class="container" style="padding-top:1em; ">
             <div class="row">
                 <div class="input-field  col s5 offset-s3">

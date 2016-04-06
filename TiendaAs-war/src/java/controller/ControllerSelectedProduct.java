@@ -24,7 +24,7 @@ public class ControllerSelectedProduct extends FrontCommand {
             ShopingCar shopingCar = getShopingCar();
             List<Product> listProduct = shopingCar.getListProduct();
             this.request.setAttribute("listProducto", listProduct);
-            forward("/selectingProduct.jsp");
+            forward("/view/selectingProduct.jsp");
         } catch (NamingException ex) {
             Logger.getLogger(CommandIndex.class.getName()).log(Level.SEVERE, null, ex);
         }

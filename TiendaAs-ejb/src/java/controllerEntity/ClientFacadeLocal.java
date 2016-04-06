@@ -7,26 +7,26 @@ package controllerEntity;
 
 import java.util.List;
 import javax.ejb.Local;
-import model.PurchaseOrder;
+import model.Client;
 
 /**
  *
  * @author Osvaldo
  */
 @Local
-public interface PurchaseOrderFacadeLocal {
+public interface ClientFacadeLocal {
 
-    void create(PurchaseOrder purchaseOrder);
+    void create(Client client);
 
-    void edit(PurchaseOrder purchaseOrder);
+    void edit(Client client);
 
-    void remove(PurchaseOrder purchaseOrder);
+    void remove(Client client);
 
-    PurchaseOrder find(Object id);
+    Client find(Object id);
 
-    List<PurchaseOrder> findAll();
+    List<Client> findAll();
 
-    List<PurchaseOrder> findRange(int[] range);
+    List<Client> findRange(int[] range);
 
     int count();
     

@@ -7,26 +7,26 @@ package controllerEntity;
 
 import java.util.List;
 import javax.ejb.Local;
-import model.DiscountCode;
+import model.Purchase;
 
 /**
  *
  * @author Osvaldo
  */
 @Local
-public interface DiscountCodeFacadeLocal {
+public interface PurchaseFacadeLocal {
 
-    void create(DiscountCode discountCode);
+    void create(Purchase purchase);
 
-    void edit(DiscountCode discountCode);
+    void edit(Purchase purchase);
 
-    void remove(DiscountCode discountCode);
+    void remove(Purchase purchase);
 
-    DiscountCode find(Object id);
+    Purchase find(Object id);
 
-    List<DiscountCode> findAll();
+    List<Purchase> findAll();
 
-    List<DiscountCode> findRange(int[] range);
+    List<Purchase> findRange(int[] range);
 
     int count();
     

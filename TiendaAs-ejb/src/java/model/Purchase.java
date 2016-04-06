@@ -11,6 +11,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,24 +30,29 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Osvaldo
  */
 @Entity
-@Table(name = "PURCHASE_ORDER")
+@Table(name = "PURCHASE")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PurchaseOrder.findAll", query = "SELECT p FROM PurchaseOrder p"),
-    @NamedQuery(name = "PurchaseOrder.findByOrderNum", query = "SELECT p FROM PurchaseOrder p WHERE p.orderNum = :orderNum"),
-    @NamedQuery(name = "PurchaseOrder.findByQuantity", query = "SELECT p FROM PurchaseOrder p WHERE p.quantity = :quantity"),
-    @NamedQuery(name = "PurchaseOrder.findByShippingCost", query = "SELECT p FROM PurchaseOrder p WHERE p.shippingCost = :shippingCost"),
-    @NamedQuery(name = "PurchaseOrder.findBySalesDate", query = "SELECT p FROM PurchaseOrder p WHERE p.salesDate = :salesDate"),
-    @NamedQuery(name = "PurchaseOrder.findByShippingDate", query = "SELECT p FROM PurchaseOrder p WHERE p.shippingDate = :shippingDate"),
-    @NamedQuery(name = "PurchaseOrder.findByFreightCompany", query = "SELECT p FROM PurchaseOrder p WHERE p.freightCompany = :freightCompany")})
-public class PurchaseOrder implements Serializable {
+    @NamedQuery(name = "Purchase.findAll", query = "SELECT p FROM Purchase p"),
+    @NamedQuery(name = "Purchase.findByPurchaseId", query = "SELECT p FROM Purchase p WHERE p.purchaseId = :purchaseId"),
+    @NamedQuery(name = "Purchase.findByOrderNum", query = "SELECT p FROM Purchase p WHERE p.orderNum = :orderNum"),
+    @NamedQuery(name = "Purchase.findByQuantity", query = "SELECT p FROM Purchase p WHERE p.quantity = :quantity"),
+    @NamedQuery(name = "Purchase.findByShippingCost", query = "SELECT p FROM Purchase p WHERE p.shippingCost = :shippingCost"),
+    @NamedQuery(name = "Purchase.findBySalesDate", query = "SELECT p FROM Purchase p WHERE p.salesDate = :salesDate"),
+    @NamedQuery(name = "Purchase.findByShippingDate", query = "SELECT p FROM Purchase p WHERE p.shippingDate = :shippingDate"),
+    @NamedQuery(name = "Purchase.findByFreightCompany", query = "SELECT p FROM Purchase p WHERE p.freightCompany = :freightCompany")})
+public class Purchase implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "PURCHASE_ID")
+    private Integer purchaseId;
     @Basic(optional = false)
     @NotNull
     @Column(name = "ORDER_NUM")
-    private Integer orderNum;
+    private int orderNum;
     @Column(name = "QUANTITY")
     private Short quantity;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -60,25 +67,52 @@ public class PurchaseOrder implements Serializable {
     @Size(max = 30)
     @Column(name = "FREIGHT_COMPANY")
     private String freightCompany;
-    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "CUSTOMER_ID")
+    @JoinColumn(name = "CLIENT_ID", referencedColumnName = "CLIENT_ID")
     @ManyToOne(optional = false)
-    private Customer customerId;
+    private Client clientId;
     @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")
     @ManyToOne(optional = false)
     private Product productId;
 
-    public PurchaseOrder() {
+    public Purchase( int orderNum, Short quantity, BigDecimal shippingCost, Date salesDate, Date shippingDate, String freightCompany, Client clientId, Product productId) {
+        this.orderNum = orderNum;
+        this.quantity = quantity;
+        this.shippingCost = shippingCost;
+        this.salesDate = salesDate;
+        this.shippingDate = shippingDate;
+        this.freightCompany = freightCompany;
+        this.clientId = clientId;
+        this.productId = productId;
     }
 
-    public PurchaseOrder(Integer orderNum) {
+    
+    
+    
+    public Purchase() {
+    }
+
+    public Purchase(Integer purchaseId) {
+        this.purchaseId = purchaseId;
+    }
+
+    public Purchase(Integer purchaseId, int orderNum) {
+        this.purchaseId = purchaseId;
         this.orderNum = orderNum;
     }
 
-    public Integer getOrderNum() {
+    public Integer getPurchaseId() {
+        return purchaseId;
+    }
+
+    public void setPurchaseId(Integer purchaseId) {
+        this.purchaseId = purchaseId;
+    }
+
+    public int getOrderNum() {
         return orderNum;
     }
 
-    public void setOrderNum(Integer orderNum) {
+    public void setOrderNum(int orderNum) {
         this.orderNum = orderNum;
     }
 
@@ -122,12 +156,12 @@ public class PurchaseOrder implements Serializable {
         this.freightCompany = freightCompany;
     }
 
-    public Customer getCustomerId() {
-        return customerId;
+    public Client getClientId() {
+        return clientId;
     }
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
+    public void setClientId(Client clientId) {
+        this.clientId = clientId;
     }
 
     public Product getProductId() {
@@ -141,18 +175,18 @@ public class PurchaseOrder implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (orderNum != null ? orderNum.hashCode() : 0);
+        hash += (purchaseId != null ? purchaseId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PurchaseOrder)) {
+        if (!(object instanceof Purchase)) {
             return false;
         }
-        PurchaseOrder other = (PurchaseOrder) object;
-        if ((this.orderNum == null && other.orderNum != null) || (this.orderNum != null && !this.orderNum.equals(other.orderNum))) {
+        Purchase other = (Purchase) object;
+        if ((this.purchaseId == null && other.purchaseId != null) || (this.purchaseId != null && !this.purchaseId.equals(other.purchaseId))) {
             return false;
         }
         return true;
@@ -160,7 +194,7 @@ public class PurchaseOrder implements Serializable {
 
     @Override
     public String toString() {
-        return "model.PurchaseOrder[ orderNum=" + orderNum + " ]";
+        return "model.Purchase[ purchaseId=" + purchaseId + " ]";
     }
     
 }
