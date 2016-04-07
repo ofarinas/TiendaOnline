@@ -5,6 +5,14 @@
  */
 package controller;
 
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import model.StadisticPurchase;
+import model.StadisticPurchaseList;
+
 /**
  *
  * @author Osvaldo
@@ -14,7 +22,14 @@ public class ControlllerSearchPurchse extends FrontCommand{
     @Override
     public void process() {
         String dni = request.getParameter("dni");
-        
+        try {
+            StadisticPurchaseList purshaseList=InitialContext.doLookup("java:module/StadisticPurchaseList");
+            StadisticPurchase stadisticPurchases = purshaseList.find(dni);
+            this.request.setAttribute("stadisticPurchases", stadisticPurchases);
+            this.request.setAttribute("js", new Object());
+            forward("/view/purchase.jsp");
+        } catch (NamingException ex) {
+            Logger.getLogger(ControlllerSearchPurchse.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
 }

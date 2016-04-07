@@ -33,7 +33,7 @@ public class FrontController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         String nameController = request.getParameter("controller") == null?"CommandIndex":(String) request.getParameter("controller");
-        executeCommand(nameController, request, response);
+            executeCommand(nameController, request, response);
     }
 
     private void executeCommand(String parameterController, HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, IllegalAccessException, InstantiationException {

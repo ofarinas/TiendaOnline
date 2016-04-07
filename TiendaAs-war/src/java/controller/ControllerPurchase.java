@@ -17,6 +17,8 @@ import javax.naming.NamingException;
 import model.Client;
 import model.Product;
 import model.Purchase;
+import model.StadisticPurchase;
+import model.StadisticPurchaseList;
 
 /**
  *
@@ -32,6 +34,8 @@ public class ControllerPurchase extends FrontCommand {
         try {
             createClient();
             createPurchase();
+            addStadisticPurchase();
+            
             forward("/index.jsp");
         } catch (NamingException ex) {
             Logger.getLogger(ControllerPurchase.class.getName()).log(Level.SEVERE, null, ex);
@@ -58,5 +62,13 @@ public class ControllerPurchase extends FrontCommand {
         clientFacadeLocal = InitialContext.doLookup("java:module/ClientFacade");
         client = new Client(request.getParameter("dni"), request.getParameter("name"), request.getParameter("address"), request.getParameter("email"), request.getParameter("phone"));
         clientFacadeLocal.create(client);
+    }
+
+    private void addStadisticPurchase() throws NamingException {
+        StadisticPurchaseList purshaseList=InitialContext.doLookup("java:module/StadisticPurchaseList");
+        StadisticPurchase purshase= InitialContext.doLookup("java:module/StadisticPurchase");
+        purshase.init(request.getParameter("name"),getShopingCar().getListProduct(),getToday());
+        purshaseList.add(request.getParameter("dni"), purshase);
+        request.setAttribute("js", true);
     }
 }

@@ -11,10 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="css/css.css"  media="screen,projection"/>
+        <%@include file="/view/css/css.jsp" %>
         <title>Tienda</title>
     </head>
 
@@ -106,8 +103,6 @@
                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
             </div>
         </div>
-        <script type="text/javascript" src="js/jquery-2.2.1.min.js"></script>
-        <script type="text/javascript" src="js/materialize.min.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <%@include file="/view/javaScript/javaScript.jsp"%>
     </body>
 </html>
