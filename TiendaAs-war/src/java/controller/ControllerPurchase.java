@@ -17,7 +17,6 @@ import javax.naming.NamingException;
 import model.Client;
 import model.Product;
 import model.Purchase;
-import model.ShopingCar;
 
 /**
  *

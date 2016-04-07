@@ -38,22 +38,26 @@ function addProduct(id) {
     $("#valueCarrito").text(carrito);
 }
 function sendProduct(id) {
-    $.get("FrontController", {id: id,controller:"ControllerAddProducto"},function (data){
+    $.get("FrontController", {id: id, controller: "ControllerAddProducto"}, function (data) {
         console.log(data);
     });
 }
 function removeProduct(id) {
-    $.get("FrontController", {id: id,controller:"ControllerRemoveProduct"},function (data){
+    $.get("FrontController", {id: id, controller: "ControllerRemoveProduct"}, function (data) {
         console.log(data);
     });
 }
-function deleteRowPrdoduct(id){
-    $("#"+id).remove();
+function deleteRowPrdoduct(id) {
+    $("#" + id).remove();
     removeProduct(id);
 }
-function showList(){
-    if(carrito!=0){
-        window.location.href ="/LayautPresentation/FrontController?controller=ControllerSelectedProduct";
+function showList() {
+    if (carrito != 0) {
+        window.location.href = "/LayautPresentation/FrontController?controller=ControllerSelectedProduct";
     }
-    
+}
+function sendPersonalInformation()
+{
+    $('#modalPersonalInformation').closeModal();
+    $("#formPersonalInformation").submit();
 }
