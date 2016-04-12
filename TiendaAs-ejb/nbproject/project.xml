@@ -5,6 +5,9 @@
         <data xmlns="http://www.netbeans.org/ns/j2ee-ejbjarproject/3">
             <name>TiendaAs-ejb</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
+            <included-library dirs="200">libs.itex.classpath</included-library>
+            <included-library dirs="200">libs.itexPdf.classpath</included-library>
+            <included-library dirs="200">libs.com.lowagie.text-2.1.7.classpath</included-library>
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>

@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controllerEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import model.Client;
 
 /**
@@ -28,5 +24,10 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
     public ClientFacade() {
         super(Client.class);
     }
-    
+
+    @Override
+    public Client findByDni(String dni) {
+        Query queryDniClient = em.createNamedQuery("Client.findByDni");
+        return (Client)queryDniClient.setParameter("dni", dni).getResultList().get(0);
+    }
 }

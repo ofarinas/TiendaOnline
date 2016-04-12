@@ -5,9 +5,11 @@
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a class="waves-effect waves-light  modal-trigger" href="/LayautPresentation/view/purchase.jsp"> Purchases</a></li>
+                        <li><a class="waves-effect waves-light  modal-trigger" href="/LayautPresentation/FrontController" > Products</a></li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <li><a class="waves-effect waves-light  modal-trigger" href="/LayautPresentation/view/purchase.jsp"> Purchases</a></li>
+                        <li><a class="waves-effect waves-light  modal-trigger" href="/LayautPresentation/FrontController" > Products</a></li>
                     </ul>
                 </div>
             </nav>

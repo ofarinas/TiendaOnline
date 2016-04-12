@@ -5,7 +5,6 @@
  */
 package controller;
 
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
@@ -27,6 +26,7 @@ public class ControlllerSearchPurchse extends FrontCommand{
             StadisticPurchase stadisticPurchases = purshaseList.find(dni);
             this.request.setAttribute("stadisticPurchases", stadisticPurchases);
             this.request.setAttribute("js", new Object());
+            this.request.setAttribute("formPurchase", new Object());
             forward("/view/purchase.jsp");
         } catch (NamingException ex) {
             Logger.getLogger(ControlllerSearchPurchse.class.getName()).log(Level.SEVERE, null, ex);

@@ -12,8 +12,8 @@
 <html>
     <head>
         <%
-            Object js =  request.getAttribute("js");
-            if (js!=null) {
+            Object js = request.getAttribute("js");
+            if (js != null) {
         %>                
         <%@include file="/view/css/css.jsp"%>
         <%
@@ -23,7 +23,7 @@
         <%
             }
         %>
-        <%@include file="/view/css/css2.jsp"%>
+        <%--<%@include file="/view/css/css2.jsp"%>--%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Purchase</title>
     </head>
@@ -31,18 +31,30 @@
         <%@include file="nav.jsp" %>
         <div class="container">
             <h3 style="text-align: center">Purchase</h3>
-            <form action="../FrontController" method="get">
-                <input hidden type="text" name="controller" value="ControlllerSearchPurchse">
-                <div class="row">
-                    <div class="input-field  col s5 offset-s3">
-                        <label ><i class="material-icons">search</i></label>
-                        <input type="text" name="dni" id="buscadorProducto" class=" search validate">
-                    </div>
-                    <div style="position:relative;top:23px;" class="col s2">
+            <%
+                if (request.getAttribute("formPurchase") == null) {
 
-                        <input type="submit" id="selectingProduct" class="btn" value="Purchases" ></input>
-                    </div>
-            </form>
+
+            %>
+            <form action="../FrontController" method="get">
+                <%                } else {
+                %>
+                <form action="FrontController" method="get">
+                    <%
+                        }
+                    %>
+                    <input hidden type="text" name="controller" value="ControlllerSearchPurchse">
+                    <div class="row">
+                        <div style="position:relative;top:23px;" class="col offset-s3">
+                            <label ><i class="material-icons">search</i></label>
+                        </div>
+                        <div class="input-field  col s4">
+                            <input type="text" placeholder="dni" size="9" name="dni" id="buscadorProducto" class=" search validate">
+                        </div>
+                        <div style="position:relative;top:23px;" class="col s2">
+                            <input type="submit"  id="selectingProduct" class="btn" value="Purchases" ></input>
+                        </div>
+                </form>
         </div>
         <div class="row">
             <table>
@@ -91,7 +103,7 @@
 
     </div>
     <%
-        if (js!=null) {
+        if (js != null) {
     %>                
     <%@include file="/view/javaScript/javaScript.jsp"%>
     <%

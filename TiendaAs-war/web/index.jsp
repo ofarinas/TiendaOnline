@@ -40,20 +40,21 @@
                     <form id="formElement" action="FrontController" method="get">
                     <ul class="list"id="listProduct">
                         <%
+                            out.print(request.getRequestURL());
                             List<Product> list = (List) request.getAttribute("listProducto");
                             if (list != null) {
                                 for (Product producto : list) {
                         %>
 
                         <li  id="<%=producto.getDescription()%>">
-                            <div class=" col s4">
+                            <div class=" col s12 l4 m4">
                                 <div class=" valign-wrapper" style="height: 111px;">
                                     <h4 class=" valign light name" ><%= producto.getDescription()%></h4>
                                 </div>
                                 <div class="card small">
                                     <div class="card-image">
-                                        <!--<img src="images/sample-1.jpg">-->
-                                        <span class="card-title">Título de la Tarjeta</span>
+                                        <img src="img/portatil.jpg">
+                                        <!--<span class="card-title">Título de la Tarjeta</span>-->
                                     </div>
                                     <div class="card-content">
                                         <p><%=producto.getDescription()%></p>
