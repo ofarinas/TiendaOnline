@@ -48,26 +48,26 @@
 
                         <li  id="<%=producto.getDescription()%>">
                             <div class=" col s12 l4 m4">
-                                <div class=" valign-wrapper" style="height: 111px;">
-                                    <h4 class=" valign light name" ><%= producto.getDescription()%></h4>
-                                </div>
                                 <div class="card small">
-                                    <div class="card-image">
-                                        <img src="img/portatil.jpg">
-                                        <!--<span class="card-title">Título de la Tarjeta</span>-->
-                                    </div>
-                                    <div class="card-content">
-                                        <p><%=producto.getDescription()%></p>
-                                    </div>
-                                    <div class="card-action">
-                                        <p>
-                                            <input type="checkbox" precio="12" name="<%= producto.getDescription()%>" id="<%= producto.getProductId()%>" onclick="addProduct('<%= producto.getProductId()%>')"/>
-                                            <label for="<%= producto.getProductId()%>">add to trolley</label>
-                                        </p>
-                                        <a href="#">see</a>
-                                        <a href="#">buy</a>
-                                    </div>
-                                </div>
+									<div class="card-image waves-effect waves-block waves-light">
+										<img class="activator" src="img/portatil.jpg">
+									</div>
+									<div class="card-content">
+										<span class="card-title activator grey-text text-darken-4"><%= System.out.print(producto.getDescription()) %><i class="material-icons right">more_vert</i></span>
+										<p>
+											<input type="checkbox" precio="12" name="<%= producto.getDescription()%>" id="<%= producto.getProductId()%>" onclick="addProduct('<%= producto.getProductId()%>')"/>
+											<%= if( producto.getQuantityOnHand() > 0 ){ %>
+											<label for="<%= producto.getProductId()%>">add to trolley</label>
+											<%= } %>
+										</p>
+									</div>
+									<div class="card-reveal">
+										<span class="card-title grey-text text-darken-4"><%= System.out.print(producto.getDescription()) %><i class="material-icons right">close</i></span>
+										<p>Unidades disponibles: <%= System.out.print( producto.getQuantityOnHand().toString() ) %></p>
+										<p>Precio: <%= System.out.print( producto.getPurchaseCost().toString() ) %></p>
+										<p>Descripcion: </p>
+									</div>
+								</div>
                             </div>
                         </li>
                         <%
