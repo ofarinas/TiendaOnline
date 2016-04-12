@@ -5,6 +5,7 @@
  */
 package controller;
 
+import controllerEntity.PurchaseFacadeLocal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
@@ -24,6 +25,7 @@ public class ControlllerSearchPurchse extends FrontCommand{
         try {
             StadisticPurchaseList purshaseList=InitialContext.doLookup("java:module/StadisticPurchaseList");
             StadisticPurchase stadisticPurchases = purshaseList.find(dni);
+            PurchaseFacadeLocal facadeLocal= InitialContext.doLookup("java:module/PurchaseFacade");
             this.request.setAttribute("stadisticPurchases", stadisticPurchases);
             this.request.setAttribute("js", new Object());
             this.request.setAttribute("formPurchase", new Object());

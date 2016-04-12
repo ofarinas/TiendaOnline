@@ -59,5 +59,18 @@ function showList() {
 function sendPersonalInformation()
 {
     $('#modalPersonalInformation').closeModal();
-    $("#formPersonalInformation").submit();
+    window.location.href = "/LayautPresentation/FrontController";
+//    $("#formPersonalInformation").submit();
 }
+function sendPurchase(){
+    var dni=$("#dni").val();
+    var name=$("#name").val();
+    var address=$("#address").val();
+    var phone=$("#email").val();
+    var email=$("#phone").val();
+    $.get("../FrontController", {controller: "ControllerPurchase",dni:dni,name:name,address:address,phone:phone,email:email}, function (data) {
+        console.log("todo bien");
+        $("#modalPersonalInformation").openModal();
+    });
+}
+//request.getParameter("dni"), request.getParameter("name"), request.getParameter("address"), request.getParameter("email"), request.getParameter("phone")

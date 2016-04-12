@@ -40,6 +40,7 @@ public class ControllerPurchase extends FrontCommand {
             addStadisticPurchase();
             createPdf();
             addProduct();
+            clanShoppingCar();
         } catch (NamingException ex) {
             Logger.getLogger(ControllerPurchase.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,6 +52,7 @@ public class ControllerPurchase extends FrontCommand {
         for (Product product : getShopingCar().getListProduct()) {
             purchaseFacade.create(buildPurchase(product));
         }
+        
     }
 
     private Purchase buildPurchase(Product product) {
@@ -62,7 +64,6 @@ public class ControllerPurchase extends FrontCommand {
     }
 
     private void createClient() throws NamingException {
-        
         clientFacadeLocal = InitialContext.doLookup("java:module/ClientFacade");
         client = clientFacadeLocal.findByDni(request.getParameter("dni"));
         if (client == null) {
@@ -92,6 +93,10 @@ public class ControllerPurchase extends FrontCommand {
         buildPdf.build("", client, getShopingCar());
 //            response.getWriter()
 //        new CreatePdf().build(Client);
+    }
+
+    private void clanShoppingCar() throws NamingException {
+        getShopingCar().getListProduct().clear();
     }
 
 }

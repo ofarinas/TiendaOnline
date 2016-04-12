@@ -63,7 +63,7 @@
 
                     <div class="row">
                         <div class="col offset-l8 offset-m2 offset-s2">
-                            <a class="waves-effect waves-light btn modal-trigger" href="#modalPersonalInformation">finish</a>
+                            <a onclick="sendPurchase()" class="waves-effect waves-light btn modal-trigger">finish</a>
                         </div>
                         <div class="col m1 l1 s1">
                             <button class="btn red">cancel</button>
@@ -72,12 +72,12 @@
                     </div>
                     <div id="modalPersonalInformation" class="modal">
                         <div class="modal-content">
-                            <h4>Your purchase will make correctly</h4>
+                            <h4>Your purchase was correctly :)</h4>
                             <p>Do you want to generate a purchase receipt in pdf</p>
                         </div>
                         <div class="modal-footer">
                             <a onclick="sendPersonalInformation()" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">disagree</a>
+                            <a href="#!" onclick="sendPersonalInformation()" class=" modal-action modal-close waves-effect waves-green btn-flat">disagree</a>
                         </div>
                     </div>
                 </form>

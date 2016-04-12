@@ -28,6 +28,10 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
     @Override
     public Client findByDni(String dni) {
         Query queryDniClient = em.createNamedQuery("Client.findByDni");
-        return (Client)queryDniClient.setParameter("dni", dni).getResultList().get(0);
+        return coutClient(queryDniClient, dni)?(Client)queryDniClient.setParameter("dni", dni).getResultList().get(0):null;
+    }
+
+    private static boolean coutClient(Query queryDniClient, String dni) {
+        return queryDniClient.setParameter("dni", dni).getResultList().size()!=0;
     }
 }
