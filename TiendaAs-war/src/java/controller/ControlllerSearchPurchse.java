@@ -10,8 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import model.StadisticPurchase;
-import model.StadisticPurchaseList;
 
 /**
  *
@@ -23,10 +21,8 @@ public class ControlllerSearchPurchse extends FrontCommand{
     public void process() {
         String dni = request.getParameter("dni");
         try {
-            StadisticPurchaseList purshaseList=InitialContext.doLookup("java:module/StadisticPurchaseList");
-            StadisticPurchase stadisticPurchases = purshaseList.find(dni);
+//            Stadistic purshaseList=InitialContext.doLookup("java:module/StadisticPurchaseList");
             PurchaseFacadeLocal facadeLocal= InitialContext.doLookup("java:module/PurchaseFacade");
-            this.request.setAttribute("stadisticPurchases", stadisticPurchases);
             this.request.setAttribute("js", new Object());
             this.request.setAttribute("formPurchase", new Object());
             forward("/view/purchase.jsp");

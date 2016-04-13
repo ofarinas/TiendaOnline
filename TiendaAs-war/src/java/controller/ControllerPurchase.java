@@ -20,8 +20,7 @@ import model.BuildPdf;
 import model.Client;
 import model.Product;
 import model.Purchase;
-import model.StadisticPurchase;
-import model.StadisticPurchaseList;
+import model.Statistic;
 
 /**
  *
@@ -40,7 +39,7 @@ public class ControllerPurchase extends FrontCommand {
             addStadisticPurchase();
             createPdf();
             addProduct();
-            clanShoppingCar();
+            cleanShoppingCar();
         } catch (NamingException ex) {
             Logger.getLogger(ControllerPurchase.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,11 +72,14 @@ public class ControllerPurchase extends FrontCommand {
     }
 
     private void addStadisticPurchase() throws NamingException {
-        StadisticPurchaseList purshaseList = InitialContext.doLookup("java:module/StadisticPurchaseList");
-        StadisticPurchase purshase = InitialContext.doLookup("java:module/StadisticPurchase");
-        purshase.init(request.getParameter("name"), getShopingCar().getListProduct(), getToday());
-        purshaseList.add(request.getParameter("dni"), purshase);
+        Statistic stadistic = InitialContext.doLookup("java:module/Statistic");
+        stadistic.addProductToSellingList(getShopingCar().getListProduct());
+        countPurchase();
         request.setAttribute("js", true);
+    }
+    private void countPurchase() throws NamingException {
+        Statistic stadistic = InitialContext.doLookup("java:module/Statistic");
+        stadistic.setCountPurchase(stadistic.getCountPurchase()+1);
     }
 
     private void addProduct() throws NamingException {
@@ -91,11 +93,9 @@ public class ControllerPurchase extends FrontCommand {
     private void createPdf() throws NamingException {
         BuildPdf buildPdf = InitialContext.doLookup("java:module/BuildPdf");
         buildPdf.build("", client, getShopingCar());
-//            response.getWriter()
-//        new CreatePdf().build(Client);
     }
 
-    private void clanShoppingCar() throws NamingException {
+    private void cleanShoppingCar() throws NamingException {
         getShopingCar().getListProduct().clear();
     }
 

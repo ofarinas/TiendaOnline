@@ -36,5 +36,4 @@ public class ControllerAddProducto extends FrontCommand {
             Logger.getLogger(ControllerAddProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

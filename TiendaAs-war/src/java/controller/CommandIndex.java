@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import model.Product;
+import model.Statistic;
 
 public class CommandIndex extends FrontCommand {
 
@@ -18,11 +19,17 @@ public class CommandIndex extends FrontCommand {
             ProductFacadeLocal producto = InitialContext.doLookup(
                     "java:module/ProductFacade");
             List<Product> listProduct = producto.findAll();
+            countPersonToVisitPage();
             this.request.setAttribute("listProducto", listProduct);
             forward("/index.jsp");
         } catch (NamingException ex) {
             Logger.getLogger(CommandIndex.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void countPersonToVisitPage() throws NamingException {
+        Statistic stadistic = InitialContext.doLookup("java:module/Statistic");
+        stadistic.setCountUser(stadistic.getCountUser()+1);
     }
 
 }

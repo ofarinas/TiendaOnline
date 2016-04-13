@@ -3,7 +3,6 @@
     Created on : Mar 4, 2016, 11:38:44 AM
     Author     : Osvaldo
 --%>
-
 <%@page import="model.Product"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
