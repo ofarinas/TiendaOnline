@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">account_circle</i>
-                            <input  id="first_name" name="name" type="text" class="validate">
+                            <input  id="name" name="name" type="text" class="validate">
                             <label for="first_name">Full name</label>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">room</i>
-                            <input  id="card" type="text" name="address" class="validate">
+                            <input   type="text" name="address"id="address" class="validate">
                             <label for="card">Street</label>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">phone</i>
-                            <input id="icon_telephone" type="tel" name="phone" class="validate">
+                            <input  type="tel" name="phone" id="phone" class="validate">
                             <label for="icon_telephone">Telephone</label>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div  class="row">
                         <div class="col offset-l8 offset-m2 offset-s2">
                             <a onclick="sendPurchase()" class="waves-effect waves-light btn ">finish</a>
                         </div>

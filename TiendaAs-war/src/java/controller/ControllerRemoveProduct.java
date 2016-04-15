@@ -6,6 +6,7 @@
 package controller;
 
 import controllerEntity.ProductFacadeLocal;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
@@ -28,6 +29,11 @@ public class ControllerRemoveProduct extends FrontCommand{
             String id = request.getParameter("id");
             Product product = productoFacade.find(Integer.valueOf(id));
             shopingCar.removeProduct(product);
+        try {
+            response.getOutputStream().print(shopingCar.getTotal());
+        } catch (IOException ex) {
+            Logger.getLogger(ControllerRemoveProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
         } catch (NamingException ex) {
             Logger.getLogger(ControllerAddProducto.class.getName()).log(Level.SEVERE, null, ex);
         }

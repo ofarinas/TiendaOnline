@@ -4,6 +4,7 @@
     Author     : Osvaldo
 --%>
 
+<%@page import="model.ShopingCar"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -29,21 +30,23 @@
                         <th data-field="id">Name</th>
                         <th data-field="name">Available</th>
                         <th data-field="price">Item Price</th>
+                        <th data-field="disccount">Disccount</th>
                         <th data-field="delete"></th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <%
-                        List<Product> list = (List) request.getAttribute("listProducto");
-                        if (list != null) {
-                            for (Product producto : list) {
+                        ShopingCar shopingCar = (ShopingCar) request.getAttribute("listProducto");
+                        if (shopingCar != null) {
+                            for (Product producto : shopingCar.getListProduct()) {
                     %>
                     
                     <tr id="<%=producto.getProductId()%>">
                         <td><%=producto.getDescription()%></td>
                         <td><%=producto.getAvailable()%></td>
                         <td><%=producto.getPurchaseCost()%></td>
+                        <td></td>
                         <td><a class="waves-effect red darken-2 waves-light btn" onclick="deleteRowPrdoduct(<%=producto.getProductId()%>)">delete</a></td>
                     </tr>
                     <%
@@ -51,15 +54,17 @@
                         }
                     %>
                       <tr >
+                        <td>total</td>
                         <td></td>
-                        <td></td>
-                        <td></td>
+                        <td id="total" style="color:green"><%=shopingCar.getTotal()%></td>
+                        <td style="color:green"><%=shopingCar.getFinalPrice()%></td>
                         <td></td>
                     </tr>
                     <tr >
                         <td></td>
                         <td><a class="waves-effect waves-light btn" onclick="">clean Trolley</a></td>
                         <td><a class="waves-effect waves-light btn" href="/LayautPresentation/view/personalInfo.jsp">continue</a></td>
+                        <td></td>
                         <td></td>
                     </tr>
                 </tbody>

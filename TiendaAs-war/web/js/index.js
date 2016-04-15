@@ -44,6 +44,7 @@ function sendProduct(id) {
 }
 function removeProduct(id) {
     $.get("FrontController", {id: id, controller: "ControllerRemoveProduct"}, function (data) {
+        $("#total").text(data)
         console.log(data);
     });
 }
@@ -66,9 +67,9 @@ function sendPurchase() {
     var dni = $("#dni").val();
     var name = $("#name").val();
     var address = $("#address").val();
-    var phone = $("#email").val();
-    var email = $("#phone").val();
-    if (dni == null || name == null || address == null || phone == null || email == null) {
+    var email = $("#email").val();
+    var phone = $("#phone").val();
+    if (dni == "" || name == ""|| address == "" || phone == ""|| email == "") {
         var $toastContent = $('<span>There is field empty</span>');
           Materialize.toast($toastContent, 3000, 'rounded',function(){ $("#modalPersonalInformation").closeModal();});
          
