@@ -63,7 +63,7 @@
 
                     <div class="row">
                         <div class="col offset-l8 offset-m2 offset-s2">
-                            <a onclick="sendPurchase()" class="waves-effect waves-light btn modal-trigger">finish</a>
+                            <a onclick="sendPurchase()" class="waves-effect waves-light btn ">finish</a>
                         </div>
                         <div class="col m1 l1 s1">
                             <button class="btn red">cancel</button>

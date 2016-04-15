@@ -11,18 +11,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%
-            Object js = request.getAttribute("js");
-            if (js != null) {
-        %>                
         <%@include file="/view/css/css.jsp"%>
-        <%
-        } else {
-        %>
-        <%@include file="/view/css/css2.jsp"%>
-        <%
-            }
-        %>
         <%--<%@include file="/view/css/css2.jsp"%>--%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Purchase</title>
@@ -85,7 +74,7 @@
                             }
                         }
                     %>
-                    <tr >
+                    <tr>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -102,16 +91,6 @@
         </div>
 
     </div>
-    <%
-        if (js != null) {
-    %>                
     <%@include file="/view/javaScript/javaScript.jsp"%>
-    <%
-    } else {
-    %>
-    <%@include file="/view/javaScript/javaScript2.jsp"%>
-    <%
-        }
-    %>
 </body>
 </html>
