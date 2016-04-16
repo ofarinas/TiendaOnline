@@ -5,9 +5,11 @@
  */
 package controller;
 
+import com.lowagie.text.Paragraph;
 import controllerEntity.ClientFacadeLocal;
 import controllerEntity.ProductFacadeLocal;
 import controllerEntity.PurchaseFacadeLocal;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -38,9 +40,11 @@ public class ControllerPurchase extends FrontCommand {
             createPurchase();
             addStadisticPurchase();
             createPdf();
-            addProduct();
+//            addProduct();
             cleanShoppingCar();
         } catch (NamingException ex) {
+            Logger.getLogger(ControllerPurchase.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(ControllerPurchase.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -51,7 +55,7 @@ public class ControllerPurchase extends FrontCommand {
         for (Product product : getShopingCar().getListProduct()) {
             purchaseFacade.create(buildPurchase(product));
         }
-        
+
     }
 
     private Purchase buildPurchase(Product product) {
@@ -77,9 +81,10 @@ public class ControllerPurchase extends FrontCommand {
         countPurchase();
         request.setAttribute("js", true);
     }
+
     private void countPurchase() throws NamingException {
         Statistic stadistic = InitialContext.doLookup("java:module/Statistic");
-        stadistic.setCountPurchase(stadistic.getCountPurchase()+1);
+        stadistic.setCountPurchase(stadistic.getCountPurchase() + 1);
     }
 
     private void addProduct() throws NamingException {
@@ -90,10 +95,19 @@ public class ControllerPurchase extends FrontCommand {
         forward("/index.jsp");
     }
 
-    private void createPdf() throws NamingException {
-        BuildPdf buildPdf = InitialContext.doLookup("java:module/BuildPdf");
-        buildPdf.build("", client, getShopingCar());
-    }
+    private void createPdf() throws NamingException, IOException {
+        String pdf = "";
+        pdf += " <h1>Recipe</h1>";
+        pdf += "Name of client:" + client.getName() + "<br>";
+        pdf += "<h4>Products</h4><br>";
+        for (Product product : getShopingCar().getListProduct()) {
+                pdf+="<strong>Name of product</strong>: " + product.getDescription()+" ";
+                pdf+="<strong>Price</strong>:" + product.getPurchaseCost()+"<br>";
+            }
+        response.getOutputStream().print(pdf);
+        }
+
+    
 
     private void cleanShoppingCar() throws NamingException {
         getShopingCar().getListProduct().clear();

@@ -10,8 +10,7 @@
     <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="../css/css.css"  media="screen,projection"/>
+        <%@include file="/view/css/css2.jsp"%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
@@ -76,16 +75,14 @@
                             <p>Do you want to generate a purchase receipt in pdf</p>
                         </div>
                         <div class="modal-footer">
-                            <a onclick="sendPersonalInformation()" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-                            <a href="#!" onclick="sendPersonalInformation()" class=" modal-action modal-close waves-effect waves-green btn-flat">disagree</a>
+                            <a onclick="sendPersonalInformation(true)" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                            <a href="#!" onclick="sendPersonalInformation(false)" class=" modal-action modal-close waves-effect waves-green btn-flat">disagree</a>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
 
-        <script type="text/javascript" src="../js/jquery-2.2.1.min.js"></script>
-        <script type="text/javascript" src="../js/materialize.min.js"></script>
-        <script type="text/javascript" src="../js/index.js"></script>
+     <%@include file="/view/javaScript/javaScript.jsp"%>
     </body>
 </html>

@@ -29,7 +29,7 @@ public class BuildPdf {
 
     public void build(String path, Client client, ShopingCar shopingCar) {
         try {
-            OutputStream file = new FileOutputStream(new File("C:\\Users\\Osvaldo\\Documents\\NetBeansProjects\\TiendaAs\\TiendaAs-war\\resorce\\purchase.pdf"));
+            OutputStream file = new FileOutputStream(new File("C:\\Users\\Osvaldo\\Documents\\NetBeansProjects\\TiendaAs\\TiendaAs-war\\web\\resorce\\purchase.pdf"));
             Document document = new Document();
             PdfWriter.getInstance(document, file);
             document.open();
