@@ -47,7 +47,6 @@ public class ControllerPurchase extends FrontCommand {
         } catch (IOException ex) {
             Logger.getLogger(ControllerPurchase.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     private void createPurchase() throws NamingException {
@@ -55,7 +54,6 @@ public class ControllerPurchase extends FrontCommand {
         for (Product product : getShopingCar().getListProduct()) {
             purchaseFacade.create(buildPurchase(product));
         }
-
     }
 
     private Purchase buildPurchase(Product product) {

@@ -75,8 +75,8 @@
                             <p>Do you want to generate a purchase receipt in pdf</p>
                         </div>
                         <div class="modal-footer">
-                            <a onclick="sendPersonalInformation(true)" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-                            <a href="#!" onclick="sendPersonalInformation(false)" class=" modal-action modal-close waves-effect waves-green btn-flat">disagree</a>
+                            <a onclick="createPdf()" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                            <a href="/LayautPresentation/FrontController"  class=" modal-action modal-close waves-effect waves-green btn-flat">disagree</a>
                         </div>
                     </div>
                 </form>
