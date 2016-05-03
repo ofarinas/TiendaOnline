@@ -18,7 +18,7 @@ public class CommandIndex extends FrontCommand {
         try {
             ProductFacadeLocal producto = InitialContext.doLookup(
                     "java:module/ProductFacade");
-            List<Product> listProduct = producto.findAll();
+            List<Product> listProduct = producto.findRange(getRange());
             addNewVisitor();
             this.request.setAttribute("listProducto", listProduct);
             forward("/index.jsp");
@@ -38,5 +38,12 @@ public class CommandIndex extends FrontCommand {
             countPersonToVisitPage();
             session.setAttribute("coutPeople", 1);
         }
+    }
+
+    private int [] getRange() {
+        String range = request.getParameter("range");
+        if(range==null)range="0";
+        request.setAttribute("range",range);
+        return new int[]{Integer.valueOf(range),Integer.valueOf(range)+5};
     }
 }

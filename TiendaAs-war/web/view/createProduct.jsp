@@ -17,58 +17,44 @@
     <body>
         <%@include file="nav.jsp" %>
         <div class="container">
-            <h3 style="text-align: center">Personal Information</h3>
+            <h3 style="text-align: center">Insert Product</h3>
             <div class="row">
                 <form  id="formPersonalInformation" class="col s8 offset-s2" action="../FrontController">
-                    <input hidden type="text" name="controller" value="ControllerPurchase">
+                    <input hidden type="text" name="controller" value="ControllerCreateProduct">
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">account_circle</i>
                             <input  id="name" name="name" type="text" class="validate">
-                            <label for="first_name">Full name</label>
+                            <label for="first_name">Name</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">mode_edit</i>
+                            <textarea id="Description" name="description"class="materialize-textarea"></textarea>
+                            <label for="Description">Description</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">credit_card</i>
-                            <input  id="dni" type="text" name="dni" class="validate">
-                            <label for="dni">DNI</label>
+                            <input   type="text" name="price" id="Price" class="validate">
+                            <label for="Price">Price</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <i class="material-icons prefix">room</i>
-                            <input   type="text" name="address"id="address" class="validate">
-                            <label for="card">Street</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">phone</i>
-                            <input  type="tel" name="phone" id="phone" class="validate">
-                            <label for="icon_telephone">Telephone</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">email</i>
-                            <input id="email" type="email" name="email" class="validate">
-                            <label for="email">Email</label>
-                        </div>
-                    </div>
-                     <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">credit_card</i>
-                            <input  id="creditCard" type="text" name="creditCard" class="validate">
-                            <label for="credicCard">Credit Card</label>
+                            <i class="material-icons prefix">code</i>
+                            <input  type="tel" name="code" id="code" class="validate">
+                            <label for="code">code</label>
                         </div>
                     </div>
                     <div  class="row">
                         <div class="col offset-l8 offset-m2 offset-s2">
-                            <a onclick="sendPurchase()" class="waves-effect waves-light btn ">finish</a>
+                            <input type="submit" class="waves-effect waves-light btn "value="Insert">
                         </div>
                         <div class="col m1 l1 s1">
                             <button class="btn red">cancel</button>

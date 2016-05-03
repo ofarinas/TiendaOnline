@@ -5,11 +5,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Osvaldo
  */
-public class DiscountFivePorcent implements Disccount{
+public class DiscountFivePorcent implements Disccount,Serializable {
 
    private double value=0;
     
@@ -21,6 +23,12 @@ public class DiscountFivePorcent implements Disccount{
     @Override
     public void setDisccount(double value) {
         this.value = value*0.05;
+    }
+
+    @Override
+    public double calculate() {
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

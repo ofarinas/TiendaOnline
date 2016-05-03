@@ -35,7 +35,7 @@
 
                             <tbody>
                                 <tr>
-                                    <td><h6>Number of conection  to main Page </h6></td>
+                                    <td><h6>Number of User </h6></td>
                                     <td><%=statistic.getCountUser()%></td>
                                 </tr>
                                 <tr>
@@ -46,10 +46,10 @@
                                     <td>Product most selling</td>
                                     <td><%=statistic.ProductMostSelling()%></td>
                                 </tr>
-                                <tr>
+<!--                                <tr>
                                     <td>Product most seeing </td>
                                     <td>Lollipop</td>
-                                </tr>
+                                </tr>-->
                             </tbody>
                         </table>
                     </div>

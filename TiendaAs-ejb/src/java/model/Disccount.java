@@ -5,11 +5,15 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Osvaldo
  */
-interface Disccount {
+interface Disccount extends Serializable{
  public double getDisccount();   
  public void setDisccount(double value);   
+ public double calculate();   
+ 
 }

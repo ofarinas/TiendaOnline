@@ -1,10 +1,7 @@
-<%-- 
-    Document   : purshase
-    Created on : Apr 7, 2016, 12:39:33 PM
-    Author     : Osvaldo
---%>
 
-<%@page import="model.StadisticPurchase"%>
+<%@page import="model.Client"%>
+<%@page import="model.Purchase"%>
+<%@page import="java.util.Collection"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,8 +19,6 @@
             <h3 style="text-align: center">Purchase</h3>
             <%
                 if (request.getAttribute("formPurchase") == null) {
-
-
             %>
             <form action="../FrontController" method="get">
                 <%                } else {
@@ -58,17 +53,16 @@
 
                 <tbody>
                     <%
-                        StadisticPurchase purchace = (StadisticPurchase) request.getAttribute("stadisticPurchases");
-                        if (purchace != null) {
-                            List<Product> list = (List) purchace.getList();
-                            for (Product producto : list) {
+                        Collection<Purchase> purchaseCollection = (Collection) request.getAttribute("purchaseCollection");
+                       Client client=(Client) request.getAttribute("client");
+                        if (purchaseCollection != null) {
+                            for (Purchase purchase : purchaseCollection) {
                     %>
-                    <tr id="<%=producto.getProductId()%>">
-                        <td><%=purchace.getName()%></td>
-                        <td><%=producto.getDescription()%></td>
-                        <td><%=producto.getPurchaseCost()%></td>
-                        <td><%=purchace.getDate()%></td>
-                        <!--<td><a class="waves-effect red darken-2 waves-light btn" onclick="deleteRowPrdoduct(<%=producto.getProductId()%>)">delete</a></td>-->
+                    <tr >
+                        <td><%=client.getName()%></td>
+                        <td><%=purchase.getProductId().getDescription()%></td>
+                        <td><%=purchase.getProductId().getPurchaseCost().toString()%></td>
+                        <td><%=purchase.getSalesDate()%></td>
                     </tr>
                     <%
                             }
@@ -78,12 +72,6 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                    </tr>
-                    <tr >
-                        <td></td>
-                        <td><a class="waves-effect waves-light btn" onclick="">clean Trolley</a></td>
-                        <td><a class="waves-effect waves-light btn" href="/LayautPresentation/view/personalInfo.jsp">continue</a></td>
                         <td></td>
                     </tr>
                 </tbody> 

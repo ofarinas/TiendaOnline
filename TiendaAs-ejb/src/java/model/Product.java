@@ -76,6 +76,19 @@ public class Product implements Serializable {
     public Product() {
     }
 
+    public Product(Integer productId, BigDecimal purchaseCost, Integer quantityOnHand, BigDecimal markup, String available, String description, String name, Manufacturer manufacturerId, ProductCode productCode, Collection<Purchase> purchaseCollection) {
+        this.productId = productId;
+        this.purchaseCost = purchaseCost;
+        this.quantityOnHand = quantityOnHand;
+        this.markup = markup;
+        this.available = available;
+        this.description = description;
+        this.name = name;
+        this.manufacturerId = manufacturerId;
+        this.productCode = productCode;
+        this.purchaseCollection = purchaseCollection;
+    }
+
     public Product(Integer productId) {
         this.productId = productId;
     }

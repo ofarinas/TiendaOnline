@@ -56,6 +56,7 @@ function showList() {
         window.location.href = "/LayautPresentation/FrontController?controller=ControllerSelectedProduct";
     }
 }
+
 function createPdf()
 {
     $('#modalPersonalInformation').closeModal();
@@ -65,6 +66,10 @@ function createPdf()
     doc.save();
     window.location.href = "/LayautPresentation/FrontController";
 }
+function sendProduct(){
+    
+}
+
 function sendPurchase(pdfValue) {
     var dni = $("#dni").val();
     var name = $("#name").val();

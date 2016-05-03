@@ -7,6 +7,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.LocalBean;
 
@@ -19,20 +20,24 @@ import javax.ejb.LocalBean;
 public class ShopingCar {
 
     private double total = 0;
-    private Disccount discount=new ControllerDiscount().getDisccount();
+    @EJB
+    ControllerDiscount controllerDiscount;
+    double discount;
 
-    public Disccount getDiscount() {
+    public double getDiscount() {
         return discount;
     }
 
     public double getFinalPrice() {
-        if(discount==null) return 0;
-        discount.setDisccount(total);
-        return discount.getDisccount();
+        discount = controllerDiscount.calculateDiscoutn(getTotal());
+        if (discount == 0) {
+            return 0;
+        } else {
+            return discount;
+        }
     }
 
-    public ShopingCar(Disccount discount, List<Product> listProduct) {
-        this.discount = discount;
+    public ShopingCar( List<Product> listProduct) {
         this.listProduct = listProduct;
     }
 

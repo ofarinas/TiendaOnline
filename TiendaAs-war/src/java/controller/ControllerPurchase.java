@@ -5,7 +5,6 @@
  */
 package controller;
 
-import com.lowagie.text.Paragraph;
 import controllerEntity.ClientFacadeLocal;
 import controllerEntity.ProductFacadeLocal;
 import controllerEntity.PurchaseFacadeLocal;
@@ -18,7 +17,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import model.BuildPdf;
 import model.Client;
 import model.Product;
 import model.Purchase;
@@ -40,7 +38,6 @@ public class ControllerPurchase extends FrontCommand {
             createPurchase();
             addStadisticPurchase();
             createPdf();
-//            addProduct();
             cleanShoppingCar();
         } catch (NamingException ex) {
             Logger.getLogger(ControllerPurchase.class.getName()).log(Level.SEVERE, null, ex);

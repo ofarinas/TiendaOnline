@@ -11,6 +11,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -71,7 +72,7 @@ public class Purchase implements Serializable {
     @ManyToOne(optional = false)
     private Client clientId;
     @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER,optional = false)
     private Product productId;
 
     public Purchase( int orderNum, Short quantity, BigDecimal shippingCost, Date salesDate, Date shippingDate, String freightCompany, Client clientId, Product productId) {

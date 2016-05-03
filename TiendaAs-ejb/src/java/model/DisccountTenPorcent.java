@@ -22,5 +22,10 @@ private double value=0;
     public void setDisccount(double value) {
         this.value = value*0.1;
     }
+
+    @Override
+    public double calculate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

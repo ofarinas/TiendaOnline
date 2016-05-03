@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
-
 import javax.ejb.LocalBean;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
@@ -17,24 +11,30 @@ import javax.ejb.Singleton;
 @LocalBean
 public class ControllerDiscount {
 
-    Disccount disccount = null;
+    Disccount disccount=null;
 
     public ControllerDiscount() {
     }
 
 //    @Schedule(dayOfMonth = "–1")
-//    public void setTenPorcentDisccount() {
+//    public void setTenPorcentDisccountFinanMonth() {
 //        disccount = new DisccountTenPorcent();
 //    }
 
-    @Schedule(dayOfWeek="Fri",second = "*",minute = "*", hour="*")
+    @Schedule(second = "*",minute = "*", hour="*")
     public void setFivePorcentDisccount() {
+        if(disccount==null)
         disccount = new DiscountFivePorcent();
     }
 
-
-    public Disccount getDisccount() {
-        return disccount;
+    public double calculateDiscoutn( double value) {
+        disccount.setDisccount(value);
+        return disccount.getDisccount();
     }
-    
+   
+//    @Schedule(dayOfWeek="Fri")
+//    public void setTenPorcentDisccountFriday() {
+//        if(disccount==null)
+//        disccount = new DisccountTenPorcent();
+//    }
 }

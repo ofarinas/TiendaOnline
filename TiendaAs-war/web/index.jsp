@@ -37,46 +37,133 @@
             <div class="row">
                 <div id="productos">
                     <form id="formElement" action="FrontController" method="get">
-                    <ul class="list"id="listProduct">
-                        <%
-                            out.print(request.getRequestURL());
-                            List<Product> list = (List) request.getAttribute("listProducto");
-                            if (list != null) {
-                                for (Product producto : list) {
-                        %>
+                        <ul class="list"id="listProduct">
+                            <%
+                                List<Product> list = (List) request.getAttribute("listProducto");
+                                if (list != null) {
+                                    for (Product producto : list) {
+                            %>
 
-                        <li  id="<%=producto.getDescription()%>">
-                            <div class=" col s12 l4 m4">
-                                <div class=" valign-wrapper" style="height: 111px;">
-                                    <h4 class=" valign light name" ><%= producto.getDescription()%></h4>
+                            <li  id="<%=producto.getDescription()%>">
+                                <div class=" col s12 l4 m4">
+                                    <div class=" valign-wrapper" style="height: 111px;">
+                                        <h4 class=" valign light name" ><%= producto.getDescription()%></h4>
+                                    </div>
+                                    <div class="card small">
+                                        <div class="card-image">
+                                            <img src="img/portatil.jpg">
+                                            <!--<span class="card-title">Título de la Tarjeta</span>-->
+                                        </div>
+                                        <div class="card-content">
+                                            <p><%=producto.getDescription()%></p>
+                                        </div>
+                                        <div class="card-action">
+                                            <p>
+                                                <input type="checkbox" precio="12" name="<%= producto.getDescription()%>" id="<%= producto.getProductId()%>" onclick="addProduct('<%= producto.getProductId()%>')"/>
+                                                <label for="<%= producto.getProductId()%>">add to trolley</label>
+                                            </p>
+                                            <a href="#">see</a>
+                                            <a href="#">buy</a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card small">
-                                    <div class="card-image">
-                                        <img src="img/portatil.jpg">
-                                        <!--<span class="card-title">Título de la Tarjeta</span>-->
-                                    </div>
-                                    <div class="card-content">
-                                        <p><%=producto.getDescription()%></p>
-                                    </div>
-                                    <div class="card-action">
-                                        <p>
-                                            <input type="checkbox" precio="12" name="<%= producto.getDescription()%>" id="<%= producto.getProductId()%>" onclick="addProduct('<%= producto.getProductId()%>')"/>
-                                            <label for="<%= producto.getProductId()%>">add to trolley</label>
-                                        </p>
-                                        <a href="#">see</a>
-                                        <a href="#">buy</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <%
+                            </li>
+                            <%
+                                    }
                                 }
-                            }
-                        %>
-                    </ul>
-                    <input hidden name="controller" type="text">
-                   </form> 
+                            %>
+                        </ul>
+                        <input hidden name="controller" type="text">
+                    </form> 
+
+
                 </div>
+            </div>
+            <div class="row">
+                <ul class="pagination">
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                        <%
+                            String range = (String) request.getAttribute("range");
+                            if (range.equals("0")) {
+                        %>
+                    <li class="active"><a>1</a></li>
+
+                    <%
+                    } else {
+                    %>
+                    <li><a class="waves-effect" href="FrontController">1</a></li>
+
+                    <%
+                        }
+                    %>
+                    <%
+                        if (range.equals("6")) {
+                    %>
+                    <li class="active"><a href="FrontController?range=6">2</a></li>
+
+                    <%
+                    } else {
+                    %>
+                    <li class="waves-effect"><a href="FrontController?range=6">2</a></li>
+
+                    <%
+                        }
+                    %>
+                    <%
+                        if (range.equals("12")) {
+                    %>
+                    <li class="active"><a href="FrontController?range=12">3</a></li>
+
+                    <%
+                    } else {
+                    %>
+                    <li class="waves-effect"><a href="FrontController?range=12">3</a></li>
+
+                    <%
+                        }
+                    %>
+                    <%
+                        if (range.equals("18")) {
+                    %>
+                    <li class="active"><a href="FrontController?range=18">4</a></li>
+
+                    <%
+                    } else {
+                    %>
+                    <li class="waves-effect"><a href="FrontController?range=18">4</a></li>
+
+                    <%
+                        }
+                    %>
+                    <%
+                        if (range.equals("24")) {
+                    %>
+                    <li class="active"><a href="FrontController?range=24">5</a></li>
+
+                    <%
+                    } else {
+                    %>
+                    <li class="waves-effect"><a href="FrontController?range=24">5</a></li>
+
+                    <%
+                        }
+                    %>
+                     <%
+                        if (range.equals("30")) {
+                    %>
+                    <li class="active"><a href="FrontController?range=30">6</a></li>
+
+                    <%
+                    } else {
+                    %>
+                    <li class="waves-effect"><a href="FrontController?range=30">6</a></li>
+
+                    <%
+                        }
+                    %>
+
+                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                </ul>
             </div>
         </div>
         <!--MODAL LOGIN-->

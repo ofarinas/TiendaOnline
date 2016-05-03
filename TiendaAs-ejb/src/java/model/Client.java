@@ -6,9 +6,12 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -69,7 +72,12 @@ public class Client implements Serializable {
     @Size(max = 9)
     @Column(name = "DNI")
     private String dni;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clientId")
+//    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "clientId")
+      @JoinTable
+  (
+      name="PURCHASE",
+      joinColumns={ @JoinColumn(name="CLIENT_ID", referencedColumnName="CLIENT_ID") }
+  )
     private Collection<Purchase> purchaseCollection;
     
     public Client(String dni,String name,String address,String email,String phone) {
