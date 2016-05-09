@@ -25,11 +25,21 @@
                 <div class="col s1">
                     <div style="background: "><i class=" medium material-icons">shopping_cart</i></div> 
                 </div>   
+                <%
+                    List<Product> list = (List) request.getAttribute("listProducto");
+                    List<Product> selectingProductList = (List) request.getAttribute("shoppingCar");
+                %>
                 <div class="col s1">
-                    <label id="valueCarrito">0</label>
+                    <label id="valueCarrito"><%=selectingProductList.size()%></label>
                 </div>
                 <div class="col s2">
+                    <%
+                        if (selectingProductList.isEmpty()) {
+                    %>
                     <a id="selectingProduct" class="btn disabled" onclick="showList();">Products</a>
+                    <%} else {%>
+                    <a id="selectingProduct" class="btn " onclick="showList();">Products</a>
+                    <%}%>
                 </div>
             </div>
 
@@ -39,19 +49,23 @@
                     <form id="formElement" action="FrontController" method="get">
                         <ul class="list"id="listProduct">
                             <%
-                                List<Product> list = (List) request.getAttribute("listProducto");
+
                                 if (list != null) {
                                     for (Product producto : list) {
                             %>
 
-                            <li  id="<%=producto.getDescription()%>">
+                            <li  id="<%=producto.getName()%>">
                                 <div class=" col s12 l4 m4">
-                                    <div class=" valign-wrapper" style="height: 111px;">
-                                        <h4 class=" valign light name" ><%= producto.getDescription()%></h4>
+                                    <div class="row">
+                                        <div class=" col s4">
+                                            <div class=" valign-wrapper" style="height: 111px;">
+                                                <h4 class=" valign light name" ><%= producto.getName()%></h4>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="card small">
                                         <div class="card-image">
-                                            <img src="img/portatil.jpg">
+                                            <img style="width: 50%;"src="img/portatil.jpg">
                                             <!--<span class="card-title">Título de la Tarjeta</span>-->
                                         </div>
                                         <div class="card-content">
@@ -59,12 +73,73 @@
                                         </div>
                                         <div class="card-action">
                                             <p>
+                                                <%
+                                                    if (selectingProductList.contains(producto)) {
+                                                %>
+                                                <input checked type="checkbox" precio="12" name="<%= producto.getDescription()%>" id="<%= producto.getProductId()%>" onclick="addProduct('<%= producto.getProductId()%>')"/>
+                                                <%
+                                                } else {
+                                                %>
                                                 <input type="checkbox" precio="12" name="<%= producto.getDescription()%>" id="<%= producto.getProductId()%>" onclick="addProduct('<%= producto.getProductId()%>')"/>
+                                                <%}%>
                                                 <label for="<%= producto.getProductId()%>">add to trolley</label>
                                             </p>
-                                            <a href="#">see</a>
-                                            <a href="#">buy</a>
+                                            <a class="modal-trigger" href="#<%="modal" + producto.getProductId()%>">see</a>
+                                            <a class="modal-trigger" href="#<%="modal2" + producto.getProductId()%>" style="color: red;">remove</a>
                                         </div>
+                                    </div>
+                                </div>
+                                <div id="<%="modal2" + producto.getProductId()%>" class="modal">
+                                    <div class="modal-content">
+                                        <h4 style="text-align: center;">Do you want to remove the product</h4>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="/LayautPresentation/FrontController?controller=ControllerDeleteElement&id=<%=producto.getProductId()%>" onclick=""class=" modal-action modal-close waves-effect waves-green btn-flat">Accept</a>
+                                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+                                    </div>
+                                </div>
+                                <!--@@@@@@@@@@@@@@@@@@@@@@@@@-->
+                                <div id="<%="modal" + producto.getProductId()%>" class="modal modal-fixed-footer">
+                                    <div class="modal-content">
+                                        <h4 style="text-align: center;"><%=producto.getName()%></h4>
+                                        <form action="sing">
+                                            <div class="row">
+                                                <div class="col s3">
+                                                    <h5>Cost:</h5>
+                                                </div>
+                                                <div class="col s5">
+                                                    <h5><%=producto.getPurchaseCost()%> </h5>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s3">
+                                                    <h5>Description:</h5>
+                                                </div>
+                                                <div class="col s5">
+                                                    <h5><%=producto.getDescription()%> </h5>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s3">
+                                                    <h5>Abailable:</h5>
+                                                </div>
+                                                <div  class="col s4">
+                                                    <h5><%=producto.getAvailable()%> </h5>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div  class="col s12">
+                                                    <img style="width: 30%;" src="img/portatil.jpg">
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Acept</a>
+                                        <a href="#!" class=" modal-action modal-close red waves-effect waves-green btn-flat">delete</a>
+                                        <a href="#!" class=" modal-action  waves-effect  waves-green btn-flat">Edit</a>
                                     </div>
                                 </div>
                             </li>
@@ -148,7 +223,7 @@
                     <%
                         }
                     %>
-                     <%
+                    <%
                         if (range.equals("30")) {
                     %>
                     <li class="active"><a href="FrontController?range=30">6</a></li>

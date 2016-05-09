@@ -35,6 +35,6 @@ public class ControllerDiscount {
 //    @Schedule(dayOfWeek="Fri")
 //    public void setTenPorcentDisccountFriday() {
 //        if(disccount==null)
-//        disccount = new DisccountTenPorcent();
+//        disccount = new DiscountFivePorcent();
 //    }
 }

@@ -2,6 +2,7 @@ var carrito = 0;
 var listCarrito = {};
 var pdf = "";
 $(document).ready(function () {
+    var carrito = $("#valueCarrito").val();
     $(".button-collapse").sideNav();
     $('.modal-trigger').leanModal();
     searchProduct();
@@ -65,9 +66,6 @@ function createPdf()
     doc.fromHTML(pdf);
     doc.save();
     window.location.href = "/LayautPresentation/FrontController";
-}
-function sendProduct(){
-    
 }
 
 function sendPurchase(pdfValue) {

@@ -21,6 +21,7 @@ public class CommandIndex extends FrontCommand {
             List<Product> listProduct = producto.findRange(getRange());
             addNewVisitor();
             this.request.setAttribute("listProducto", listProduct);
+            this.request.setAttribute("shoppingCar", getShopingCar().getListProduct());
             forward("/index.jsp");
         } catch (NamingException ex) {
             Logger.getLogger(CommandIndex.class.getName()).log(Level.SEVERE, null, ex);
