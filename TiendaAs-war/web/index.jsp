@@ -85,6 +85,7 @@
                                                 <label for="<%= producto.getProductId()%>">add to trolley</label>
                                             </p>
                                             <a class="modal-trigger" href="#<%="modal" + producto.getProductId()%>">see</a>
+                                            <a  href="/LayautPresentation/FrontController?controller=ControllerShowEditProduct&id=<%=producto.getProductId()%>"  style="color: green;">edit</a>
                                             <a class="modal-trigger" href="#<%="modal2" + producto.getProductId()%>" style="color: red;">remove</a>
                                         </div>
                                     </div>
