@@ -40,6 +40,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Client.findByDni", query = "SELECT c FROM Client c WHERE c.dni = :dni")})
 public class Client implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clientId")
+    private Collection<Purchase> purchaseCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,12 +76,7 @@ public class Client implements Serializable {
     @Column(name = "DNI")
     private String dni;
 //    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "clientId")
-      @JoinTable
-  (
-      name="PURCHASE",
-      joinColumns={ @JoinColumn(name="CLIENT_ID", referencedColumnName="CLIENT_ID") }
-  )
-    private Collection<Purchase> purchaseCollection;
+//    private Collection<Purchase> purchaseCollection;
     
     public Client(String dni,String name,String address,String email,String phone) {
         this.dni=dni;

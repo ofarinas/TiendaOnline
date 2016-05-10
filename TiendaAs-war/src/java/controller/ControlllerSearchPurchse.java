@@ -26,6 +26,7 @@ public class ControlllerSearchPurchse extends FrontCommand{
         try {
             ClientFacadeLocal clientFacadeLocal = InitialContext.doLookup("java:module/ClientFacade");
             Client client=clientFacadeLocal.findByDni(dni);
+            if(client!=null)
             client=clientFacadeLocal.find(client.getClientId());
             Collection<Purchase> purchaseCollection=null;
             if(client!=null)

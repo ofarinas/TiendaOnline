@@ -99,7 +99,6 @@
                                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
                                     </div>
                                 </div>
-                                <!--@@@@@@@@@@@@@@@@@@@@@@@@@-->
                                 <div id="<%="modal" + producto.getProductId()%>" class="modal modal-fixed-footer">
                                     <div class="modal-content">
                                         <h4 style="text-align: center;"><%=producto.getName()%></h4>
@@ -139,8 +138,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Acept</a>
-                                        <a href="#!" class=" modal-action modal-close red waves-effect waves-green btn-flat">delete</a>
-                                        <a href="#!" class=" modal-action  waves-effect  waves-green btn-flat">Edit</a>
+                                        <!--<a href="#!" class=" modal-action  waves-effect  waves-green btn-flat">Edit</a>-->
                                     </div>
                                 </div>
                             </li>
